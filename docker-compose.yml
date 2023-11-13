@@ -1,6 +1,6 @@
 services:
 
-  django_project:
+  project:
     build: .
     container_name: osint_container
     labels:
@@ -28,13 +28,13 @@ services:
     restart: on-failure
     container_name: nginx
     volumes:
-      # - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf.d:/etc/nginx/conf.d
       - static:/static
       - media:/media
     ports:
       - 80:80
     depends_on:
-      - django_project
+      - project
     
 
 

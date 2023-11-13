@@ -18,8 +18,8 @@ FROM nginx:alpine as production-stage
 
 WORKDIR /
 
-COPY ./nginx/conf.d/nginx.conf ./etc/nginx/nginx.conf
-# COPY ./nginx/conf.d/default.conf ./etc/nginx/conf.d/default.conf
+# COPY ./nginx/conf.d/nginx.conf ./etc/nginx/nginx.conf
+COPY ./nginx/conf.d/default.conf ./etc/nginx/conf.d/default.conf
 
 ## Remove Wfault nginx index page
 RUN rm -rf /usr/share/nginx/html/*
