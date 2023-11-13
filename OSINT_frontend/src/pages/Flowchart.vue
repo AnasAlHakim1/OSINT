@@ -49,7 +49,7 @@ const getDataNodes = async (dataID, ID, nodeNum) => {
   try {
     const node = ref([]);
 
-    await axios.get(`http://127.0.0.1:8000/folder/${dataID}/`).then((res) => {
+    await axios.get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/folder/${dataID}/`).then((res) => {
       if (res.status === 200) {
         if (res.data.length === 0) {
           error.value = true;
@@ -154,7 +154,7 @@ const getDataNode = async (dataID, ID, nodeNum) => {
   try {
     const node = ref([]);
 
-    await axios.get(`http://127.0.0.1:8000/root/${dataID}/`).then((res) => {
+    await axios.get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/root/${dataID}/`).then((res) => {
       if (res.status === 200) {
         if (res.data.length === 0) {
           error.value = true;
@@ -221,7 +221,7 @@ const getDataNode = async (dataID, ID, nodeNum) => {
 
 onMounted(_ => {
   try {
-    axios.get("http://127.0.0.1:8000/root/").then((res) => {
+    axios.get("http://ec2-54-197-104-168.compute-1.amazonaws.com/root/").then((res) => {
       if (res.status === 200) {
         res.data.forEach((e, i) => {
           root.value.push(

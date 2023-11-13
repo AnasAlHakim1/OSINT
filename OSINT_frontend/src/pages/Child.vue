@@ -29,7 +29,7 @@ onMounted(async (_) => {
     };
 
     await axios
-      .get(`http://127.0.0.1:8000/child/${route.query.id}/`)
+      .get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/child/${route.query.id}/`)
       .then((res) => {
         if (res.status === 200) {
           res.data.forEach((e) => {
@@ -65,7 +65,7 @@ const getScript = async (ID) => {
     if (!file.value.files[0]) {
       selectFile.value = true;
     } else {
-      await axios.get(`http://127.0.0.1:8000/script/${ID}/`).then((res) => {
+      await axios.get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/script/${ID}/`).then((res) => {
         if (res.status === 200) {
           const resultName = res.data.name;
 
@@ -74,7 +74,7 @@ const getScript = async (ID) => {
             parent_script: res.data.id,
           };
 
-          axios.post("http://127.0.0.1:8000/upload-log/", scriptData.value, {
+          axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/upload-log/", scriptData.value, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
