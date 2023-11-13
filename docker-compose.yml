@@ -1,0 +1,44 @@
+services:
+
+  django_project:
+    build: .
+    container_name: osint_container
+    labels:
+      com.example.service: "web"
+      com.example.description: "Use for the main web process"
+    restart: on-failure
+    volumes:
+      - .:/django
+      - static:/django/static
+      - media:/django/media
+      - /var/log/django/access.log:/access.log
+      - /var/log/django/error.log:/error.log      
+    ports:
+      - 8000:8000
+    image: python:3.11-slim-buster
+
+    command: sh -c "chmod +x /django/entrypoint.sh && /django/entrypoint.sh"
+    
+
+  #nginx server docker image
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./nginx/Dockerfile
+    restart: on-failure
+    container_name: nginx
+    volumes:
+      # - ./nginx/conf.d:/etc/nginx/conf.d
+      - static:/static
+      - media:/media
+    ports:
+      - 80:80
+    depends_on:
+      - django_project
+    
+
+
+volumes:
+  static:
+  portainer_data:
+  media:
