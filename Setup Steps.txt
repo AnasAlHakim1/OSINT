@@ -34,3 +34,17 @@ sudo chmod 666 /var/run/docker.sock
 
 ###############################################
 
+#clone the project and build it using docker
+
+mkdir project
+
+cd project
+
+git clone https://github.com/AnasAlHakim1/OSINT.git
+
+cd OSINT
+
+docker compose build 
+
+docker compose up -d 
+
