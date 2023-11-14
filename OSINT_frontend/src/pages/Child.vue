@@ -138,7 +138,7 @@ const openImage = event => {
     <div class="all">
       <div v-if="childData.image">
         <img
-          :src="'http://127.0.0.1:8000' + childData.image"
+          :src="'http://ec2-54-197-104-168.compute-1.amazonaws.com' + childData.image"
           alt="Child Image"
           style="width: 100%;"
           @click="openImage($event)"
