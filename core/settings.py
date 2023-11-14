@@ -29,10 +29,10 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", '127.0.0.1', 'project', 'http://ec2-54-197-104-168.compute-1.amazonaws.com/']
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost", 'http://ec2-54-197-104-168.compute-1.amazonaws.com/'
+    "http://localhost", 'http://ec2-54-197-104-168.compute-1.amazonaws.com'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost']
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://ec2-54-197-104-168.compute-1.amazonaws.com']
 
 # Application definition
 
