@@ -77,6 +77,7 @@ const getScript = async (ID) => {
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
               headers: {
                 "Content-Type": "multipart/form-data",
+                "X-CSRFToken": csrfToken,
               },
             })
             .then((res) => {
