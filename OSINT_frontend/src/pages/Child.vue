@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 import { Icon } from "@iconify/vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-axios.defaults.xsrfCookieName = "csrftoken"
+//axios.defaults.xsrfCookieName = "csrftoken"
 
 const route = useRoute();
 const router = useRouter();
@@ -78,6 +78,7 @@ const getScript = async (ID) => {
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
               headers: {
                 "Content-Type": "multipart/form-data",
+                'x-csrftoken':cookies.get('csrftoken'),
               },
             })
             .then((res) => {
