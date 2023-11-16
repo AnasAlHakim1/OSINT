@@ -83,6 +83,7 @@ const getScript = async (ID) => {
               withCredentials:true,
               headers: {
                 "Content-Type": "multipart/form-data",
+                'x-csrftoken':cookies.get('csrftoken'),
               },
             })
             .then((res) => {
