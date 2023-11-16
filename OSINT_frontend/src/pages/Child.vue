@@ -3,8 +3,6 @@ import { ref, onMounted } from "vue";
 import { Icon } from "@iconify/vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-//axios.defaults.xsrfCookieName = "csrftoken"
-// axios.defaults.xsrfheadername = "x-csrftoken";
 
 const route = useRoute();
 const router = useRouter();
@@ -68,8 +66,7 @@ const getScript = async (ID) => {
       selectFile.value = true;
     } else {
       await axios.get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/api/script/${ID}/`).then((res) => {
-        console.log(res);
-        console.log("*********");
+
         if (res.status === 200) {
           const resultName = res.data.name;
 
@@ -78,7 +75,6 @@ const getScript = async (ID) => {
             parent_script: res.data.id,
           };
           
-          console.log(scriptData.value);
           axios.defaults.xsrfCookieName = 'csrftoken'
           axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
@@ -89,8 +85,7 @@ const getScript = async (ID) => {
               },
             })
             .then((res) => {
-              console.log("*************");
-              console.log(res);
+
               if (res.status === 201) {
                 const data = {
                   name: resultName,
