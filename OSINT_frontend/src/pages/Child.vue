@@ -4,6 +4,7 @@ import { Icon } from "@iconify/vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 //axios.defaults.xsrfCookieName = "csrftoken"
+axios.defaults.xsrfheadername = "x-csrftoken";
 
 const route = useRoute();
 const router = useRouter();
