@@ -32,7 +32,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost", 'http://ec2-54-197-104-168.compute-1.amazonaws.com'
 ]
 
-csrf_cookie_name = "xsrf-token"
+# csrf_cookie_name = "xsrf-token"
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://ec2-54-197-104-168.compute-1.amazonaws.com']
 
