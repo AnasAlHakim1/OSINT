@@ -67,6 +67,8 @@ const getScript = async (ID) => {
       selectFile.value = true;
     } else {
       await axios.get(`http://ec2-54-197-104-168.compute-1.amazonaws.com/api/script/${ID}/`).then((res) => {
+        console.log(res);
+        console.log("*********");
         if (res.status === 200) {
           const resultName = res.data.name;
 
@@ -81,10 +83,10 @@ const getScript = async (ID) => {
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
               headers: {
                 "Content-Type": "multipart/form-data",
-                'x-csrftoken':cookies.get('csrftoken'),
               },
             })
             .then((res) => {
+              console.log("*************");
               console.log(res);
               if (res.status === 201) {
                 const data = {
