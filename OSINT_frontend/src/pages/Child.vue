@@ -77,7 +77,6 @@ const getScript = async (ID) => {
             parent_script: res.data.id,
           };
           
-          console.log(cookies.get('csrftoken'));
           console.log(scriptData.value);
 
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
