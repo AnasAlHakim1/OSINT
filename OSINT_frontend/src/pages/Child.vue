@@ -80,6 +80,7 @@ const getScript = async (ID) => {
           console.log(scriptData.value);
 
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
+              withCredentials:true,
               headers: {
                 "Content-Type": "multipart/form-data",
               },
