@@ -74,6 +74,9 @@ const getScript = async (ID) => {
             log_file: file.value.files[0],
             parent_script: res.data.id,
           };
+          
+          console.log(cookies.get('csrftoken'));
+          console.log(scriptData.value);
 
           axios.post("http://ec2-54-197-104-168.compute-1.amazonaws.com/api/upload-log/", scriptData.value, {
               headers: {
@@ -82,6 +85,7 @@ const getScript = async (ID) => {
               },
             })
             .then((res) => {
+              console.log(res);
               if (res.status === 201) {
                 const data = {
                   name: resultName,
