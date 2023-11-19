@@ -15,24 +15,33 @@ class Folder(models.Model):
     parent_folder = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
-    # def __str__(self):
-    #     return self.get_path_string()
-
-    # def get_path_string(self):
-    #     path_components = []
-    #     current_folder = self
-
-    #     while current_folder:
-    #         path_components.insert(0, current_folder.name)
-    #         current_folder = current_folder.parent_folder
-
-    #     if self.parent_root:
-    #         path_components.insert(0, self.parent_root.name)
-
-    #     return " / ".join(path_components)
     def __str__(self):
-        parent_folders_string = get_parent_folders_as_string(self)
-        return f"{self.name} in {parent_folders_string}"
+        return self.get_path_string()
+
+    def get_path_string(self):
+        path_components = []
+        current_folder = self
+
+        while current_folder:
+            path_components.insert(0, current_folder.name)
+            current_folder = current_folder.parent_folder
+
+        if self.parent_root:
+            path_components.insert(0, self.parent_root.name)
+        elif self.parent_folder:
+            # Include the root parent from the folder parent
+            root_parent = self.get_root_parent_from_folder_parent(self.parent_folder)
+            path_components.insert(0, root_parent.name)
+
+        return " / ".join(path_components)
+
+    def get_root_parent_from_folder_parent(self, folder_parent):
+        while folder_parent.parent_folder:
+            folder_parent = folder_parent.parent_folder
+        return folder_parent.parent_root
+    # def __str__(self):
+    #     parent_folders_string = get_parent_folders_as_string(self)
+    #     return f"{self.name} in {parent_folders_string}"
 
     
 class Child(models.Model):
