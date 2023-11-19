@@ -16,8 +16,23 @@ class Folder(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        parent_folders_string = get_parent_folders_as_string_with_root(self)
-        return f"{self.name} in {parent_folders_string}"
+        return self.get_path_string()
+
+    def get_path_string(self):
+        path_components = []
+        current_folder = self
+
+        while current_folder:
+            path_components.insert(0, current_folder.name)
+            current_folder = current_folder.parent_folder
+
+        if self.parent_root:
+            path_components.insert(0, self.parent_root.name)
+
+        return " / ".join(path_components)
+    # def __str__(self):
+    #     parent_folders_string = get_parent_folders_as_string_with_root(self)
+    #     return f"{self.name} in {parent_folders_string}"
 
     
 class Child(models.Model):
