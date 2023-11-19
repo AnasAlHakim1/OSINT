@@ -19,16 +19,16 @@ def run_script_on_log(log_file_path, script_path):
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def get_parent_folders_as_string_with_root(child):
+def get_parent_folders_as_string_with_root(folder):
     folder_name = ""
-    parent = child.parent_folder
+    parent = folder.parent_folder
 
     while parent:
         folder_name = f"{parent.name}\\{folder_name}"
         parent = parent.parent_folder
 
-    if child.parent_root:
-        root_name = child.parent_root.name
+    if folder.parent_root:
+        root_name = folder.parent_root.name
     else:
         root_name = ""
 
