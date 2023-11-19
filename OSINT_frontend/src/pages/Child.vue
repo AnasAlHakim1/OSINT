@@ -142,7 +142,12 @@ const openImage = event => {
     <h1>{{ childData.name }}</h1>
     
     <div class="all">
-      <div v-if="childData.image">
+      <div v-if="childData.steps">
+        <h3>There is some steps :</h3>
+        <pre>{{ childData.steps }}</pre>
+      </div>
+
+      <div v-if="childData.image" class="img">
         <img
           :src="'http://ec2-54-197-104-168.compute-1.amazonaws.com' + childData.image"
           alt="Child Image"
@@ -150,55 +155,48 @@ const openImage = event => {
           @click="openImage($event)"
         />
       </div>
-
-      <div>
-        <div v-if="childData.steps">
-          <h3>There is some steps :</h3>
-          <pre>{{ childData.steps }}</pre>
+      
+      <div v-if="childData.link">
+        <h3>Visit the link for more information :</h3>
+        <div>
+          <a :href="childData.link" target="_blank">
+            {{ childData.link }}
+          </a>
         </div>
-
-        <div v-if="childData.link">
-          <h3>Visit the link for more information :</h3>
-          <div>
-            <a :href="childData.link" target="_blank">
-              {{ childData.link }}
-            </a>
-          </div>
-        </div>
-
-        <form v-if="showScripts" @submit.prevent>
-          <h3>Use scripts :</h3>
-          <div>
-            <label for="myfile">Select a file:</label>
-            <input
-              type="file"
-              id="myFile"
-              name="myFile"
-              ref="file"
-              @change="progressFile"
-            />
-            <div
-              v-if="selectFile"
-              class="selectError"
-            >
-              <span>Please select file...</span>
-            </div>
-            <div v-if="ProgressValue" style="margin-top: 0.5rem">
-              <span>Progress: {{ ProgressValue }}</span>
-              <span style="margin-inline-start: 1rem">{{ progressResult }}</span>
-            </div>
-            <div class="buttons-container">
-              <button
-                v-for="(scr, i) in childData.scripts"
-                :key="i"
-                @click="getScript(scr.id)"
-              >
-                {{ scr.name }}
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
+
+      <form v-if="showScripts" @submit.prevent>
+        <h3>Use scripts :</h3>
+        <div>
+          <label for="myfile">Select a file:</label>
+          <input
+            type="file"
+            id="myFile"
+            name="myFile"
+            ref="file"
+            @change="progressFile"
+          />
+          <div
+            v-if="selectFile"
+            class="selectError"
+          >
+            <span>Please select file...</span>
+          </div>
+          <div v-if="ProgressValue" style="margin-top: 0.5rem">
+            <span>Progress: {{ ProgressValue }}</span>
+            <span style="margin-inline-start: 1rem">{{ progressResult }}</span>
+          </div>
+          <div class="buttons-container">
+            <button
+              v-for="(scr, i) in childData.scripts"
+              :key="i"
+              @click="getScript(scr.id)"
+            >
+              {{ scr.name }}
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 </template>
@@ -213,13 +211,13 @@ section {
 
   .all {
     margin-top: 2rem;
-    display: inline-flex;
-    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    width: 100%;
 
-    & > div {
-      width: 50%;
+    .img {
+      width: 70%;
     }
   }
 
