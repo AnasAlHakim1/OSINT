@@ -212,8 +212,10 @@ section {
   .all {
     margin-top: 2rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
     width: 100%;
 
     .img {
