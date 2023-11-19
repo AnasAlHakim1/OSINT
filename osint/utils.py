@@ -27,8 +27,8 @@ def get_parent_folders_as_string_with_root(folder):
         folder_name = f"{parent.name}\\{folder_name}"
         parent = parent.parent_folder
 
-    if folder.parent_root:
-        root_name = folder.parent_root.name
+    if parent.parent_root:
+        root_name = parent.parent_root.name
     else:
         root_name = ""
 
